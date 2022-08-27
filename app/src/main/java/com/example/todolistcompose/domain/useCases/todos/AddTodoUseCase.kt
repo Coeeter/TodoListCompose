@@ -23,7 +23,7 @@ class AddTodoUseCase @Inject constructor(
         )
         if (todo.task.isEmpty())
             throw InvalidTodoException("Task of todo cannot be empty")
-        if (todo.timeCreated < todo.timeToComplete)
+        if (todo.timeToStartTask > todo.timeToComplete)
             throw InvalidTodoException("Time to complete of todo cannot be before the start date")
         todoRepo.addTodo(todo)
     }

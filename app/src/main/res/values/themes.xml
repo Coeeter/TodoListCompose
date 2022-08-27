@@ -4,4 +4,8 @@
     <style name="Theme.TodoListCompose" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">#D17403</item>
     </style>
+
+    <style name="DialogTheme" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">#007A7A</item>
+    </style>
 </resources>

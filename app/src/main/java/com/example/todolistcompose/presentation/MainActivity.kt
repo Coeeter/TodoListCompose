@@ -14,7 +14,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.todolistcompose.presentation.screens.addtodosscreen.AddTodosScreen
 import com.example.todolistcompose.presentation.screens.tododetailscreen.TodoDetailsScreen
-import com.example.todolistcompose.presentation.screens.UpdateTodosScreen
 import com.example.todolistcompose.presentation.screens.todoscreen.TodosScreen
 import com.example.todolistcompose.presentation.theme.TodoListComposeTheme
 import com.example.todolistcompose.presentation.utils.Screen
@@ -43,12 +42,6 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(route = Screen.AddTodosScreen.route) {
                             AddTodosScreen(
-                                modifier = Modifier.fillMaxSize(),
-                                navController = navController
-                            )
-                        }
-                        composable(route = Screen.UpdateTodosScreen.route) {
-                            UpdateTodosScreen(
                                 modifier = Modifier.fillMaxSize(),
                                 navController = navController
                             )

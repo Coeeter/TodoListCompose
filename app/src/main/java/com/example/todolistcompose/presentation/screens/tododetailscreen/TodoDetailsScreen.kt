@@ -1,5 +1,6 @@
 package com.example.todolistcompose.presentation.screens.tododetailscreen
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -9,10 +10,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.todolistcompose.R
 import com.example.todolistcompose.presentation.screens.addtodosscreen.components.getDateString
 import com.example.todolistcompose.presentation.viewmodels.TodoDetailsViewModel
 import java.util.*
@@ -24,6 +27,25 @@ fun TodoDetailsScreen(
     viewModel: TodoDetailsViewModel = hiltViewModel()
 ) {
     val todo by viewModel.todo.collectAsState()
+    val data = listOf(
+        hashMapOf(
+            "header" to "Task:",
+            "value" to (todo?.task ?: "Loading")
+        ),
+        hashMapOf(
+            "header" to "Is completed:",
+            "value" to if (todo?.isCompleted == true) "Yes" else "No"
+        ),
+        hashMapOf(
+            "header" to "Time to start:",
+            "value" to (todo?.timeToStartTask?.run { getTime(this) } ?: "Loading")
+        ),
+        hashMapOf(
+            "header" to "Time to complete:",
+            "value" to (todo?.timeToComplete?.run { getTime(this) } ?: "Loading")
+        ),
+    )
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -41,44 +63,26 @@ fun TodoDetailsScreen(
                 .fillMaxSize()
                 .padding(10.dp)
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text("Task:", style = MaterialTheme.typography.h5)
-                if (todo != null)
-                    Text(
-                        todo!!.task,
-                        style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Light)
-                    )
-            }
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text("Time to start:", style = MaterialTheme.typography.h5)
-                if (todo != null) {
-                    val time = getTime(todo!!.timeToStartTask)
-                    Text(
-                        time,
-                        style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Light)
-                    )
-                }
-            }
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text("Time to complete:", style = MaterialTheme.typography.h5)
-                if (todo != null) {
-                    val time = getTime(todo!!.timeToComplete)
-                    Text(
-                        time,
-                        style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Light)
-                    )
+            Image(
+                painterResource(id = R.drawable.ic_details),
+                "",
+                modifier = Modifier.fillMaxWidth(0.8f)
+            )
+            Column(modifier = modifier.padding(horizontal = 30.dp)) {
+                for (item in data) {
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Text(
+                            text = item["header"]!!,
+                            style = MaterialTheme.typography.h5
+                        )
+                        Text(
+                            text = item["value"]!!,
+                            style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Light)
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
                 }
             }
         }

@@ -7,7 +7,6 @@ interface TodoRepo {
     fun getTodoList(): Flow<List<TodoModel>>
     fun getTodoById(id: Int): TodoModel?
     fun addTodo(todoModel: TodoModel)
-    fun updateTodo(todoModel: TodoModel)
     fun deleteTodo(todoModel: TodoModel)
     fun deleteAllCompletedTodos()
 }

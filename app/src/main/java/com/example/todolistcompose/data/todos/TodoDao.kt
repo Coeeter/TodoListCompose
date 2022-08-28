@@ -11,11 +11,8 @@ interface TodoDao {
     @Query("SELECT * FROM todos WHERE id = :id")
     fun getTodoById(id: Int): TodoModel?
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addTodo(todoModel: TodoModel)
-
-    @Update
-    fun updateTodo(todoModel: TodoModel)
 
     @Delete
     fun deleteTodo(todoModel: TodoModel)

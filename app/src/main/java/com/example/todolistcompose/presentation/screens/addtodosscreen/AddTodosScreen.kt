@@ -1,4 +1,4 @@
-package com.example.todolistcompose.presentation.screens
+package com.example.todolistcompose.presentation.screens.addtodosscreen
 
 import android.os.Build
 import android.util.Log
@@ -8,6 +8,8 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -63,6 +65,7 @@ fun AddTodosScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
@@ -107,11 +110,6 @@ fun AddTodosScreen(
                                 }
                                 is AddTodosScreenViewModel.AddTodoState.Success -> {
                                     isLoading = false
-                                    scaffoldState.snackbarHostState.currentSnackbarData?.dismiss()
-                                    scaffoldState.snackbarHostState.showSnackbar(
-                                        "Successfully added Todo!",
-                                        "Okay"
-                                    )
                                     navController.popBackStack()
                                 }
                                 is AddTodosScreenViewModel.AddTodoState.Failure -> {

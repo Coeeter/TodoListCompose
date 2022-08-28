@@ -12,10 +12,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.todolistcompose.presentation.screens.AddTodosScreen
-import com.example.todolistcompose.presentation.screens.TodoDetailsScreen
-import com.example.todolistcompose.presentation.screens.TodosScreen
+import com.example.todolistcompose.presentation.screens.addtodosscreen.AddTodosScreen
+import com.example.todolistcompose.presentation.screens.tododetailscreen.TodoDetailsScreen
 import com.example.todolistcompose.presentation.screens.UpdateTodosScreen
+import com.example.todolistcompose.presentation.screens.todoscreen.TodosScreen
 import com.example.todolistcompose.presentation.theme.TodoListComposeTheme
 import com.example.todolistcompose.presentation.utils.Screen
 import dagger.hilt.android.AndroidEntryPoint

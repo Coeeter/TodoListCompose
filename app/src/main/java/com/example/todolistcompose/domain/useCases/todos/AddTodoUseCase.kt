@@ -9,18 +9,8 @@ class AddTodoUseCase @Inject constructor(
     private val todoRepo: TodoRepo
 ) {
     operator fun invoke(
-        task: String,
-        timeToStart: Long,
-        timeToComplete: Long
+        todo: TodoModel
     ) {
-        val todo = TodoModel(
-            task,
-            false,
-            System.currentTimeMillis(),
-            System.currentTimeMillis(),
-            timeToStart,
-            timeToComplete,
-        )
         if (todo.task.isEmpty())
             throw InvalidTodoException("Task of todo cannot be empty")
         if (todo.timeToStartTask > todo.timeToComplete)
